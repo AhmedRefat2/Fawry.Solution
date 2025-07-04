@@ -9,7 +9,7 @@ namespace Ecommerce_System.ProductModule
     internal class ShippableProduct : Product, IShippable
     {
         public double Weight { get;}
-        public ShippableProduct(string name, decimal price, int quantity, double weight) 
+        public ShippableProduct(string name, double price, int quantity, double weight) 
             : base(name, price, quantity)
         {
             Weight = weight;

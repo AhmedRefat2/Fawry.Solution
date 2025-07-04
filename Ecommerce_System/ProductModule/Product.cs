@@ -8,7 +8,7 @@ namespace Ecommerce_System.ProductModule
 {
     internal abstract class Product
     {
-        protected Product(string name, decimal price, int quantity)
+        protected Product(string name, double price, int quantity)
         {
             Name = name;
             Price = price;
@@ -16,7 +16,7 @@ namespace Ecommerce_System.ProductModule
         }
 
         public string Name { get; } // I Supposed That productName Can Not Updated 
-        public decimal Price { get; private set; } // I Supposed Price Can Updated So I Will Handle it If you Needed
+        public double Price { get; private set; } // I Supposed Price Can Updated So I Will Handle it If you Needed
         public int Quantity { get; set; }
 
 

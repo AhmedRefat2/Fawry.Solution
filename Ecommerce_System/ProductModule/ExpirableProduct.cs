@@ -10,7 +10,7 @@ namespace Ecommerce_System.ProductModule
     {
         public DateTime ExpireDate { get; } // Once Set 
 
-        public ExpirableProduct(string name, decimal price, int quantity, DateTime expireDate)
+        public ExpirableProduct(string name, double price, int quantity, DateTime expireDate)
             : base(name, price, quantity)
         {
             ExpireDate = expireDate;

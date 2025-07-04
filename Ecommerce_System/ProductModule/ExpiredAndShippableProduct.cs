@@ -11,7 +11,7 @@ namespace Ecommerce_System.ProductModule
 
         public double Weight { get;}
 
-        public ExpiredAndShippableProduct(string name, decimal price, int quantity, DateTime expireDate, double weight) 
+        public ExpiredAndShippableProduct(string name, double price, int quantity, DateTime expireDate, double weight) 
             : base(name, price, quantity, expireDate)
         {
             Weight = weight;
