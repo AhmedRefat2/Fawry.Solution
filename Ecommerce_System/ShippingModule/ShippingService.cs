@@ -1,4 +1,5 @@
-﻿using Ecommerce_System.ProductModule;
+﻿using Ecommerce_System.CartModule;
+using Ecommerce_System.ProductModule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Ecommerce_System.ShippingModule
     {
         private const double shippingRatePer_Kg = 30;
 
-        public static void Ship(List<IShippable> shippingItems)
+        public static void Ship(List<CartItem> shippingItems)
         {
             if (shippingItems is null || !shippingItems.Any())
             {
@@ -19,11 +20,20 @@ namespace Ecommerce_System.ShippingModule
                 return;
             }
 
-            double totalWeight = shippingItems.Sum(Item => Item.GetWeight());
+            double totalWeight = shippingItems.Sum(Item => Item.Product.GetWeight());
+
+
             Console.WriteLine("** Shipment notice **");
 
             foreach (var item in shippingItems)
-                Console.WriteLine($"Item: {item.GetName}, Weight: {item.GetWeight() * 1000}g");
+            {
+                int weightInGrams = (int)(item.Product.GetWeight() * 1000);
+                Console.WriteLine($"{item.Quantity}x {item.Product.Name} {weightInGrams}g");
+            }
+
+
+            //foreach (var item in shippingItems)
+            //    Console.WriteLine($"{} {item.GetName}, Weight: {item.GetWeight() * 1000}g");
 
             Console.WriteLine($"Total package weight {totalWeight}kg\n");
 

@@ -20,7 +20,7 @@ namespace Ecommerce_System.ShippingModule
                 throw new CartIsEmptyException();
 
             double subtotal = 0;
-            List<IShippable> shippingItems = new List<IShippable>();
+            List<CartItem> shippingItems = new List<CartItem>();
 
             foreach (var item in cart.cartItems)
             {
@@ -33,11 +33,11 @@ namespace Ecommerce_System.ShippingModule
                 item.Product.Quantity -= item.Quantity; // Reduce the product quantity in stock
                 subtotal += item.Quantity * item.Product.Price; // Calculate subtotal
 
-                if (item.Product is IShippable shippableProduct)
-                    shippingItems.Add(shippableProduct);
+                if (item.Product is IShippable)
+                    shippingItems.Add(item);
             }
 
-            double totalWeight = shippingItems.Sum(p => p.GetWeight());
+            double totalWeight = shippingItems.Sum(p => p.Product.GetWeight());
             double shippingFees = ShippingService.CalculateShippingFees(totalWeight);
             double total = subtotal + shippingFees;
 
@@ -46,7 +46,7 @@ namespace Ecommerce_System.ShippingModule
 
             customer.Balance -= total;
 
-            Console.WriteLine($"Customer Name : {customer.Name}"); // For Customer Experience
+            Console.WriteLine($"Customer Name : {customer.Name}\n"); // For Customer Experience
 
             if (shippingItems.Any())
                 ShippingService.Ship(shippingItems);
